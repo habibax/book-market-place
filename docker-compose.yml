@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - ./grant.sql:/docker-entrypoint-initdb.d/grant.sql
+      - bookstore_db:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: bookstore
+      MYSQL_DATABASE: bookstore
+      MYSQL_USER: bookstore
+      MYSQL_PASSWORD: bookstore
+
+  api:
+    build:
+      context: ./
+    ports:
+    - 8000:8000
+    env_file:
+    - example.env
+    volumes:
+      - "./src:/src"
+    depends_on:
+      - db
+
+
+volumes:
+  bookstore_db:
+
