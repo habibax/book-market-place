@@ -12,7 +12,7 @@ class UserManager(BaseUserManager):
         username = username
         is_staff = kwargs.pop("is_staff", False)
         is_superuser = kwargs.pop("is_superuser", False)
-        is_active = kwargs.pop("is_active", False)
+        is_active = kwargs.pop("is_active", True)
 
         user = self.model(
             username=username,

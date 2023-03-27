@@ -20,7 +20,8 @@ from django.urls import include, path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -38,7 +39,9 @@ urlpatterns = [
         name="schema-swagger-ui",
     ),
     path("account/", include("acc.urls")),
+    path("books/", include("book.urls")),
     
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
