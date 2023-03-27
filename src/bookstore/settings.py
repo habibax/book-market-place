@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'acc',
     "drf_yasg",
+    "django_filters",
     
 ]
 
@@ -114,6 +115,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = dict(
+    DEFAULT_PERMISSION_CLASSES=("rest_framework.permissions.IsAuthenticated",),
+    DEFAULT_FILTER_BACKENDS=("django_filters.rest_framework.DjangoFilterBackend", "rest_framework.filters.OrderingFilter"),
+    DEFAULT_AUTHENTICATION_CLASSES=(
+        "rest_framework.authentication.BasicAuthentication",
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -136,3 +145,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "acc.User"
