@@ -22,6 +22,7 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from django.conf.urls.static import static
 from django.conf import settings
+# from book.routing import websocket_urlpatterns
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -40,6 +41,8 @@ urlpatterns = [
     ),
     path("account/", include("acc.urls")),
     path("books/", include("book.urls")),
+    # path('ws/', include("book.websocket")),
+    # path('ws/', include((websocket_urlpatterns, 'book'), namespace='websocket')),
     
 ]
 

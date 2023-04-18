@@ -10,6 +10,6 @@ urlpatterns = [
     path('<int:id>/', BookDetailAPIView.as_view(), name='book-detail'),
     path('user', include(router.urls)),
     
+    
 ]
-
 
