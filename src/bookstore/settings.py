@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-jhli55a8b=9!3%gq9q$8(=yc0h54*r%z!gmodhtq910cj3o!jk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'book',
     "drf_yasg",
     "django_filters",
+    'channels',
+    # 'channels_redis',
     
 ]
 
@@ -153,3 +155,10 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "acc.User"
+
+ASGI_APPLICATION = 'bookstore.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
